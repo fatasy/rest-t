@@ -1,8 +1,15 @@
 package com.example.geradorus.model;
 
-import jakarta.persistence.*;
+import java.util.Set;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
-import java.util.List;
 
 @Entity
 @Data
@@ -13,11 +20,11 @@ public class TipoTarefa {
 
     private String descricao;
 
-    @OneToMany(mappedBy="tipoTarefa")
-    private List<Tarefa> tarefa;
+    @OneToMany(mappedBy = "tipoTarefa")
+    private Set<TipoUS> tipoHistoriaUsuarios;
 
-    @ManyToOne
-    @JoinColumn(name = "us_id")
+    @OneToOne
+    @JoinColumn(name = "tipo_us_id")
     private TipoUS tipoUS;
 
 }

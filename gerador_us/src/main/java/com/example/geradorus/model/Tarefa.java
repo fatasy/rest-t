@@ -1,6 +1,14 @@
 package com.example.geradorus.model;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
@@ -17,11 +25,12 @@ public class Tarefa {
     private String descricao;
 
     @ManyToOne
-    @JoinColumn(name = "tipo_tarefa_id")
-    private TipoTarefa tipoTarefa;
+    @JoinColumn(name = "historia_usuario_id")
+    @JsonIgnore
+    private HistoriaUsuario historiaUsuario;
 
     @ManyToOne
-    @JoinColumn(name = "us_id")
-    private HistoriaUsuario historiaUsuario;
+    @JoinColumn(name = "tipo_tarefa_id", nullable = false)
+    private TipoTarefa tipoTarefa;
 
 }
